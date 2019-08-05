@@ -1,4 +1,4 @@
 import { hello } from './hello';
-import "./main.css";
+import "./main.scss";
 
 console.log(hello('tak'))
