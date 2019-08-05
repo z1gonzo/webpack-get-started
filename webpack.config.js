@@ -3,23 +3,25 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    mode: 'development',
-
+    mode: 'development',  // production
+    devtool: "none",  //eval gone
     devServer: {
         contentBase: './src',
         // watchContentBase: true,
         hot: true,
       },
-
-      entry: './src/index.js',
-
-      output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
-      },
+    entry: './src/index.js',  
+    output: {
+      filename: 'main.js',
+      path: path.resolve(__dirname, 'dist')
+    },
 
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            },
             {
                 test: /\.html$/,
                 use: [
@@ -37,6 +39,6 @@ module.exports = {
             template: "./src/index.html"
         }),
         // Needed to enable HMR
-      new webpack.HotModuleReplacementPlugin()
+    //   new webpack.HotModuleReplacementPlugin()
     ]
 }
